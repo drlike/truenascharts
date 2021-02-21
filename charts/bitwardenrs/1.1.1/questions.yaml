@@ -108,7 +108,62 @@ questions:
                       label: "Node Port to expose for UI"
                       schema:
                         type: int
-                        min: 81
+                        min: 9000
                         max: 65535
-                        default: 82
+                        default: 9082
                         required: true
+  # Storage Options
+  # Host path based volumes
+  - variable: hostPathVolumes
+    label: "Host Path Volumes"
+    group: "Storage"
+    schema:
+      type: list
+      items:
+        - variable: hostPathConfiguration
+          label: "Host Path Configuration"
+          schema:
+            type: dict
+            attrs:
+              - variable: hostPath
+                label: "Host Path"
+                schema:
+                  type: hostpath
+                  required: true
+              - variable: mountPath
+                label: "Mount Path"
+                description: "Path where host path will be mounted inside the pod"
+                schema:
+                  type: path
+                  required: true
+              - variable: readOnly
+                label: "Read Only"
+                schema:
+                  type: boolean
+                  default: false
+
+  # Volumes
+  - variable: volumes
+    label: "Volumes"
+    group: "Storage"
+    schema:
+      type: list
+      items:
+        - variable: volume
+          label: "Volume"
+          schema:
+            type: dict
+            $ref:
+              - "normalize/ixVolume"
+            attrs:
+              - variable: mountPath
+                label: "Mount Path"
+                description: "Path where the volume will be mounted inside the pod"
+                schema:
+                  type: path
+                  required: true
+              - variable: datasetName
+                label: "Dataset Name"
+                schema:
+                  type: string
+                  required: true
