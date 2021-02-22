@@ -112,58 +112,66 @@ questions:
                         max: 65535
                         default: 9082
                         required: true
-  # Storage Options
-  # Host path based volumes
-  - variable: hostPathVolumes
-    label: "Host Path Volumes"
+                        
+  - variable: appVolumeMounts
+    label: "app storage"
     group: "Storage"
     schema:
-      type: list
-      items:
-        - variable: hostPathConfiguration
-          label: "Host Path Configuration"
-          schema:
-            type: dict
-            attrs:
-              - variable: hostPath
-                label: "Host Path"
-                schema:
-                  type: hostpath
-                  required: true
-              - variable: mountPath
-                label: "Mount Path"
-                description: "Path where host path will be mounted inside the pod"
-                schema:
-                  type: path
-                  required: true
-              - variable: readOnly
-                label: "Read Only"
-                schema:
-                  type: boolean
-                  default: false
-
-  # Volumes
-  - variable: volumes
-    label: "Volumes"
-    group: "Storage"
-    schema:
-      type: list
-      items:
-        - variable: volume
-          label: "Volume"
+      type: dict
+      attrs:
+        - variable: data
+          label: "data dataset"
           schema:
             type: dict
             $ref:
               - "normalize/ixVolume"
             attrs:
-              - variable: mountPath
-                label: "Mount Path"
-                description: "Path where the volume will be mounted inside the pod"
+              - variable: enabled
+                label: "Enabled"
                 schema:
-                  type: path
+                  type: boolean
+                  default: true
                   required: true
+                  hidden: true
+                  editable: false
+              - variable: setPermissions
+                label: "Automatic Permissions"
+                description: "Automatically set permissions on install"
+                schema:
+                  type: boolean
+                  default: true
+                  hidden: false 
+              - variable: emptyDir
+                label: "emptyDir"
+                schema:
+                  type: boolean
+                  default: false
+                  hidden: true
+                  editable: false
               - variable: datasetName
                 label: "Dataset Name"
                 schema:
                   type: string
+                  default: "data"
                   required: true
+                  editable: false
+              - variable: mountPath
+                label: "Mount Path"
+                description: "Path to mount inside the pod"
+                schema:
+                  type: path
+                  required: true
+                  default: "/data"
+                  editable: false
+              - variable: hostPathEnabled
+                label: "host Path Enabled"
+                schema:
+                  type: boolean
+                  default: false
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: hostPath
+                      label: "Host Path"
+                      schema:
+                        type: hostpath
+                        required: true
