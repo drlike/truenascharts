@@ -189,7 +189,7 @@ questions:
                         type: hostpath
                         required: true
                         
- - variable: appIngress
+  - variable: appIngress
     label: ""
     group: "Ingress"
     schema:
