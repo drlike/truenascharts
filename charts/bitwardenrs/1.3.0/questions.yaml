@@ -16,7 +16,7 @@ portals:
     host:
       - "$node_ip"
     ports:
-      - "$variable-bazarrService.port"
+      - "$variable-service.port.nodePort"
     path: "/web"
 
 questions:
