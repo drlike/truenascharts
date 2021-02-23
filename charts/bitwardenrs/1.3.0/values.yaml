@@ -1,16 +1,13 @@
 # Default values for bitwardenrs.
 
-replicaCount: 1
-
 image:
   repository: bitwardenrs/server
   pullPolicy: IfNotPresent
   tag: "latest"
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
+strategy:
+  type: Recreate
+  
 service:
   port:
     port: 80
@@ -28,7 +25,3 @@ persistence:
     enabled: false
     emptyDir: false
     mountPath: /data
-
-
-
-appIngressEnabled: false
