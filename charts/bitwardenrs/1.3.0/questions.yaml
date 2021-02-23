@@ -107,21 +107,21 @@ questions:
                 schema:
                   type: string
                   default: "/data/bitwarden.sqlite3"
-                  required: true
+                  required: false
               - variable: SIGNUPS_ALLOWED
                 label:  "是否允许新用户注册(SIGNUPS_ALLOWED)"
                 description: "设置是否允许新用户注册"
                 schema:
                   type: boolean
                   default: false
-                  required: true
+                  required: false
               - variable: INVITATIONS_ALLOWED
                 label:  "是否允许邀请注册(INVITATIONS_ALLOWED)"
                 description: "设置是否允许邀请户注册"
                 schema:
                   type: boolean
                   default: false
-                  required: true
+                  required: false
 
 
   - variable: service
