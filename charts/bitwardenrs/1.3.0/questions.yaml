@@ -93,20 +93,34 @@ questions:
     schema:
       type: dict
       attrs:
-        - variable: database
-          label: "数据库位置设置"
-          description: "Always read description before changing a value here. Also refer to README"
+        - variable: config
+          label: "变量设置"
+          description: "设置运行参数"
           schema:
             type: boolean
             default: false
             show_subquestions_if: true
             subquestions:      
               - variable: DATABASE_URL
-                label:  "DATABASE_URL"
-                description: "设置数据库位置"
+                label:  "数据库位置(DATABASE_URL)"
+                description: "设置数据库位置默认位置及名称"
                 schema:
                   type: string
-                  default: "bitwarden.sqlite3"
+                  default: "/data/bitwarden.sqlite3"
+                  required: true
+              - variable: SIGNUPS_ALLOWED
+                label:  "是否允许新用户注册(SIGNUPS_ALLOWED)"
+                description: "设置是否允许新用户注册"
+                schema:
+                  type: boolean
+                  default: false
+                  required: true
+              - variable: INVITATIONS_ALLOWED
+                label:  "是否允许邀请注册(INVITATIONS_ALLOWED)"
+                description: "设置是否允许邀请户注册"
+                schema:
+                  type: boolean
+                  default: false
                   required: true
 
 
