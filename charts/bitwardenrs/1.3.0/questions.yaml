@@ -112,14 +112,14 @@ questions:
                 label:  "是否允许新用户注册(SIGNUPS_ALLOWED)"
                 description: "设置是否允许新用户注册"
                 schema:
-                  type: boolean
+                  type: string
                   default: false
                   required: false
               - variable: INVITATIONS_ALLOWED
                 label:  "是否允许邀请注册(INVITATIONS_ALLOWED)"
                 description: "设置是否允许邀请户注册"
                 schema:
-                  type: boolean
+                  type: string
                   default: false
                   required: false
 
