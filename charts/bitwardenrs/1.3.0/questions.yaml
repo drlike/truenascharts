@@ -67,19 +67,19 @@ questions:
       
                   
   # Configure Enviroment Variables
-  - variable: environmentVariables
+  - variable: env
     label: "Image environment"
     group: "Configuration"
     schema:
       type: list
       default: []
       items:
-        - variable: environmentVariable
-          label: "Environment Variable"
+        - variable: DATABASE_URL
+          label: "设置数据库名称及位置"
           schema:
             type: dict
             attrs:
-              - variable: name
+              - variable: DATABASE_URL
                 label: "Name"
                 schema:
                   type: string
