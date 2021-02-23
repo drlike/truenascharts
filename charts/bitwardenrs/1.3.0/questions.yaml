@@ -66,23 +66,14 @@ questions:
         - "definitions/timezone"   
       
                   
-#   - variable: DATABASE_URL
-#     group: "Configuration"
-#     label: "设置数据库位置"
-#     description: "设置数据库位置和名称"
-#     schema:
-#       type: string
-#       default: "/data/bitwarden.sqlite3"
-
-  # Configure Enviroment Variables
-  - variable: env
+  - variable: environmentVariables
     label: "Image environment"
     group: "Configuration"
     schema:
       type: list
       default: []
       items:
-        - variable: env
+        - variable: environmentVariable
           label: "Environment Variable"
           schema:
             type: dict
@@ -96,6 +87,29 @@ questions:
                 schema:
                   type: string
                   
+  - variable: env
+    group: "Configuration"
+    label: "Image Environment"
+    schema:
+      type: dict
+      attrs:
+        - variable: database
+          label: "数据库位置设置"
+          description: "Always read description before changing a value here. Also refer to README"
+          schema:
+            type: boolean
+            default: false
+            show_subquestions_if: true
+            subquestions:      
+              - variable: DATABASE_URL
+                label:  "DATABASE_URL"
+                description: "设置数据库位置"
+                schema:
+                  type: string
+                  default: "bitwarden.sqlite3"
+                  required: true
+
+
   - variable: service
     group: "Networking"
     label: "Configure Service"
