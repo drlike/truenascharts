@@ -17,8 +17,8 @@ env:
 # For example, if running the container as a non-root user.
 #  ROCKET_PORT: "80"
   DATABASE_URL: "/date/bitwarden.sqlite3"
-  SIGNUPS_ALLOWED: false
-  INVITATIONS_ALLOWED: false
+  SIGNUPS_ALLOWED: "false"
+  INVITATIONS_ALLOWED: "false"
 
 persistence:
   data:
