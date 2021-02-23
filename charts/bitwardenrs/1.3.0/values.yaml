@@ -19,7 +19,8 @@ env:
 # If you plan to run the WebUI on a port other than port 80, specify that here:
 # For example, if running the container as a non-root user.
 #  ROCKET_PORT: "80"
-  DATABASE_URL: "/database/bitwarden.sqlite3"
+  DATABASE_URL:
+    DATABASE_URL: "/database/bitwarden.sqlite3"
 
 persistence:
   data:
