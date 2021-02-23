@@ -61,7 +61,7 @@ questions:
     label: "Timezone"
     schema:
       type: string
-      default: "Etc/UTC"
+      default: "Asia/Shanghai"
       $ref:
         - "definitions/timezone"   
       
