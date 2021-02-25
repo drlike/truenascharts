@@ -255,7 +255,7 @@ questions:
                       label: "Select Entrypoint"
                       schema:
                         type: string
-                        default: "websecure"
+                        default: "web"
                         required: true
                         enum:
                           - value: "websecure"
