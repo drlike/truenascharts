@@ -260,6 +260,8 @@ questions:
                         enum:
                           - value: "websecure"
                             description: "Websecure: HTTPS/TLS port 443"
+                          - value: "web"
+                            description: "Web: HTTP port 80"
                     - variable: hosts
                       label: "Hosts"
                       schema:
