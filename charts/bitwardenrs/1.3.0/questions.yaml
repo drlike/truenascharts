@@ -294,7 +294,7 @@ questions:
                                               schema:
                                                 type: string
                                                 required: true
-                                                default: "/"
+                                                default: "/bitwarden"
                                             - variable: pathType
                                               label: "pathType"
                                               schema:
