@@ -107,6 +107,30 @@ questions:
       type: string
       default: "002"
 
+  - variable: env
+    group: "Configuration"
+    label: "Image Environment"
+    schema:
+      type: dict
+      attrs:
+        - variable: ALICLOUD_ACCESS_KEY
+          label: "ALICLOUD_ACCESS_KEY"
+          description: "设置ALICLOUD_ACCESS_KEY"
+            type: string
+            default: ""
+            required: false
+        - variable: ALICLOUD_SECRET_KEY
+          label: "ALICLOUD_SECRET_KEY"
+          description: "设置ALICLOUD_SECRET_KEY"
+            type: string
+            default: ""
+            required: false
+        - variable: ALICLOUD_REGION_ID
+          label: "ALICLOUD_REGION_ID"
+          description: "设置ALICLOUD_REGION_ID"
+            type: string
+            default: ""
+            required: false  
 
   - variable: appVolumeMounts
     label: "app storage"
