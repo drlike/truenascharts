@@ -210,7 +210,7 @@ questions:
                   type: string
                   default: "data"
                   required: true
-                  editable: false
+                  editable: true
               - variable: mountPath
                 label: "Mount Path"
                 description: "Path to mount inside the pod"
@@ -239,13 +239,13 @@ questions:
       type: dict
       attrs:
         - variable: webui
-          label: "Web Ingress Configuration"
+          label: "Web Reverse Proxy Configuration"
           group: "Ingress"
           schema:
             type: dict
             attrs:
               - variable: enabled
-                label: "Enable Web Ingress"
+                label: "Enable Web Reverse Proxy"
                 schema:
                   type: boolean
                   default: false
@@ -255,52 +255,16 @@ questions:
                       label: "Select Entrypoint"
                       schema:
                         type: string
-                        default: "web"
+                        default: "websecure"
                         required: true
                         enum:
                           - value: "websecure"
                             description: "Websecure: HTTPS/TLS port 443"
-                          - value: "web"
-                            description: "Web: HTTP port 80"
-                    - variable: hosts
-                      label: "Hosts"
+                    - variable: host
+                      label: "Host"
+                      required: true
                       schema:
-                        type: list
-                        default: []
-                        items:
-                          - variable: host
-                            label: "Host"
-                            schema:
-                              type: dict
-                              attrs:
-                                - variable: host
-                                  label: "Domain Name"
-                                  required: true
-                                  schema:
-                                    type: string
-                                - variable: paths
-                                  label: "paths"
-                                  schema:
-                                    type: list
-                                    default: []
-                                    items:
-                                      - variable: path
-                                        label: "Path"
-                                        schema:
-                                          type: dict
-                                          attrs:
-                                            - variable: path
-                                              label: "path"
-                                              schema:
-                                                type: string
-                                                required: true
-                                                default: "/bitwarden"
-                                            - variable: pathType
-                                              label: "pathType"
-                                              schema:
-                                                type: string
-                                                required: true
-                                                default: "prefix"
+                        type: string
                     - variable: certType
                       label: "Select Certificate Type"
                       schema:
@@ -319,15 +283,19 @@ questions:
                             description: "Self-Signed Certificate"
                           - value: "existingcert"
                             description: "Existing Certificate"
-                        show_subquestions_if: "existingcert"
-                        subquestions:
-                          - variable: existingcert
-                            label: "Existing Certificate Name"
-                            schema:
-                              type: string
-                              default: ""
-                    - variable: authForwardURL
-                      label: "Forward Authentication URL"
+                          - value: "certresolver"
+                            description: "CertResolver"                            
+
+                    - variable: existingcert
+                      label: "Existing Certificate Name"
                       schema:
                         type: string
-                        default: ""                       
+                        show_if: [["certType", "=", "existingcert"]]
+                        default: ""
+
+                    - variable: certresolver
+                      label: "CertResolver Name"
+                      schema:
+                        type: string
+                        show_if: [["certType", "=", "certresolver"]]
+                        default: ""    
