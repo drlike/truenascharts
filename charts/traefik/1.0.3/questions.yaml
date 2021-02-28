@@ -107,34 +107,6 @@ questions:
       type: string
       default: "002"
 
-  - variable: env
-    group: "Configuration"
-    label: "Image Environment"
-    schema:
-      type: dict
-      attrs:
-        - variable: ALICLOUD_ACCESS_KEY
-          label: "ALICLOUD_ACCESS_KEY"
-          description: "设置ALICLOUD_ACCESS_KEY"
-          schema:
-            type: string
-            default: ""
-            required: false
-        - variable: ALICLOUD_SECRET_KEY
-          label: "ALICLOUD_SECRET_KEY"
-          description: "设置ALICLOUD_SECRET_KEY"
-          schema:
-            type: string
-            default: ""
-            required: false
-        - variable: ALICLOUD_REGION_ID
-          label: "ALICLOUD_REGION_ID"
-          description: "设置ALICLOUD_REGION_ID"
-          schema:
-            type: string
-            default: ""
-            required: false  
-
   - variable: appVolumeMounts
     label: "app storage"
     group: "Storage"
@@ -243,22 +215,12 @@ questions:
                             description: "Self-Signed Certificate"
                           - value: "existingcert"
                             description: "Existing Certificate"
-                          - value: "certresolver"
-                            description: "CertResolver"                            
-
                     - variable: existingcert
                       label: "Existing Certificate Name"
                       schema:
                         type: string
                         show_if: [["certType", "=", "existingcert"]]
                         default: ""
-
-                    - variable: certresolver
-                      label: "CertResolver Name"
-                      schema:
-                        type: string
-                        show_if: [["certType", "=", "certresolver"]]
-                        default: ""                    
 
   - variable: certmanager
     description: "Configure CertManager Settings"
@@ -293,6 +255,8 @@ questions:
                 description: "Akamai"
               - value: "acmeDNS"
                 description: "acmeDNS"
+              - value: "aliDNS"
+                description: "aliDNS"
         - variable: email
           description: "Email Adress to use with Letsencrypt"
           label: "Email-Adress"
@@ -308,6 +272,28 @@ questions:
             show_if: [["provider", "!=", ""]]
             type: string
             default: ""
+        - variable: aliDNS
+          description: "Configure AliDNS Settings"
+          label: "AliDNS Settings"
+          schema:
+            show_if: [["provider", "=", "AliDNS"]]
+            type: dict
+            required: true
+            attrs:
+              - variable: accesskey
+                description: "Enter your AliDNS Access-Key"
+                label: "Access-Key"
+                schema:
+                  type: string
+                  default: ""
+                  required: true
+              - variable: secrtkey
+                description: "Enter your AliDNS Secrt-Key"
+                label: "Secrt-Key"
+                schema:
+                  type: string
+                  default: ""
+                  required: true
         - variable: cloudflare
           description: "Configure Cloudflare Settings"
           label: "Cloudflare Settings"

@@ -283,19 +283,9 @@ questions:
                             description: "Self-Signed Certificate"
                           - value: "existingcert"
                             description: "Existing Certificate"
-                          - value: "certresolver"
-                            description: "CertResolver"                            
-
                     - variable: existingcert
                       label: "Existing Certificate Name"
                       schema:
                         type: string
                         show_if: [["certType", "=", "existingcert"]]
                         default: ""
-
-                    - variable: certresolver
-                      label: "CertResolver Name"
-                      schema:
-                        type: string
-                        show_if: [["certType", "=", "certresolver"]]
-                        default: ""    

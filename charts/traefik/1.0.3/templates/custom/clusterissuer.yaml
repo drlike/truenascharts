@@ -5,7 +5,10 @@ metadata:
   #namespace: cert-manager
 type: Opaque
 stringData:
-  {{- if eq .Values.certmanager.provider "cloudflare" }}
+  {{- if eq .Values.certmanager.provider "aliDNS" }}
+  access-key: {{ .Values.certmanager.aliDNS.accesskey | quote }}
+  secret-key: {{ .Values.certmanager.aliDNS.secrtkey | quote }}
+  {{- else if eq .Values.certmanager.provider "cloudflare" }}
   api-key: {{ .Values.certmanager.cloudflare.apikey | quote }}
   {{- else if eq .Values.certmanager.provider "cloudDNS" }}
   key-json: {{ .Values.certmanager.cloudDNS.keyjson | quote }}
@@ -48,7 +51,19 @@ spec:
     # Add a single challenge solver, DNS01
     solvers:
     - dns01:
-        {{- if eq .Values.certmanager.provider "cloudflare" }}
+        {{- if eq .Values.certmanager.provider "aliDNS" }}
+        webhook:
+          groupName: acme.yourcompany.com
+          solverName: alidns
+          config:
+            region: ""
+            accessKeySecretRef:
+              name: dns-secret
+              key: access-key
+            secretKeySecretRef:
+              name: dns-secret
+              key: secret-key
+        {{- else if eq .Values.certmanager.provider "cloudflare" }}
         cloudflare:
           email: {{ .Values.certmanager.email }}
           apiKeySecretRef:
@@ -133,7 +148,19 @@ spec:
     # Add a single challenge solver, DNS01
     solvers:
     - dns01:
-        {{- if eq .Values.certmanager.provider "cloudflare" }}
+        {{- if eq .Values.certmanager.provider "aliDNS" }}
+        webhook:
+          groupName: acme.yourcompany.com
+          solverName: alidns
+          config:
+            region: ""
+            accessKeySecretRef:
+              name: dns-secret
+              key: access-key
+            secretKeySecretRef:
+              name: dns-secret
+              key: secret-key
+        {{- else if eq .Values.certmanager.provider "cloudflare" }}
         cloudflare:
           email: {{ .Values.certmanager.email }}
           apiKeySecretRef:

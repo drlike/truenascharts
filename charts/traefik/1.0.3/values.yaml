@@ -204,7 +204,7 @@ certificatesResolvers:
 
 
 # Environment variables to be passed to Traefik's binary
-env: 
+env: []
 # - name: SOME_VAR
 #   value: some-var-value
 # - name: SOME_VAR_FROM_CONFIG_MAP
@@ -217,9 +217,9 @@ env:
 #     secretKeyRef:
 #       name: secret-name
 #       key: secret-key
-  ALICLOUD_ACCESS_KEY: ""
-  ALICLOUD_SECRET_KEY: ""
-  ALICLOUD_REGION_ID: ""
+  # ALICLOUD_ACCESS_KEY: ""
+  # ALICLOUD_SECRET_KEY: ""
+  # ALICLOUD_REGION_ID: ""
 
 envFrom: []
 # - configMapRef:
