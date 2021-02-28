@@ -276,7 +276,7 @@ questions:
           description: "Configure AliDNS Settings"
           label: "AliDNS Settings"
           schema:
-            show_if: [["provider", "=", "AliDNS"]]
+            show_if: [["provider", "=", "aliDNS"]]
             type: dict
             required: true
             attrs:
