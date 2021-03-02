@@ -8,7 +8,7 @@ groups:
   - name: "Storage"
     description: "configure app volume mounts"
   - name: "Ingress"
-    description: "Ingress configuration"
+    description: "Reverse Proxy configuration"
     
 portals:
   web_portal:
@@ -41,7 +41,7 @@ questions:
           label: "Image Tag"
           schema:
             type: string
-            default: "latest"
+            default: "alpine"
         - variable: pullPolicy
           description: "Docker Image Pull Policy"
           label: "Image Pull Policy"
@@ -64,8 +64,31 @@ questions:
       default: "Asia/Shanghai"
       $ref:
         - "definitions/timezone"   
-      
-                  
+
+  - variable: PUID
+    group: "Configuration"
+    label: "PUID"
+    description: "The UserID of the user running the application and owning the files"
+    schema:
+      type: int
+      default: 568
+
+  - variable: PGID
+    group: "Configuration"
+    label: "PGID"
+    description: "The groupID of the user/group running the application and owning the files"
+    schema:
+      type: int
+      default: 568
+
+  - variable: UMASK
+    group: "Configuration"
+    label: "UMASK (advanced)"
+    description: "The UMASK used if supported by the application"
+    schema:
+      type: string
+      default: "002"
+  # Configure Enviroment Variables
   - variable: environmentVariables
     label: "Image environment"
     group: "Configuration"
@@ -166,15 +189,25 @@ questions:
                         type: int
                         min: 9000
                         max: 65535
-                        default: 9082
+                        default: 36082
                         required: true
                         
+  # Enable Host Networking
+  - variable: hostNetwork
+    group: "Networking"
+    label: "Enable Host Networking"
+    schema:
+      type: boolean
+      default: false
+
+## TrueCharts Specific
   - variable: appVolumeMounts
     label: "app storage"
     group: "Storage"
     schema:
       type: dict
       attrs:
+
         - variable: data
           label: "data dataset"
           schema:
@@ -260,11 +293,45 @@ questions:
                         enum:
                           - value: "websecure"
                             description: "Websecure: HTTPS/TLS port 443"
-                    - variable: host
-                      label: "Host"
-                      required: true
+                    - variable: hosts
+                      label: "Hosts"
                       schema:
-                        type: string
+                        type: list
+                        default: []
+                        items:
+                          - variable: host
+                            label: "Host"
+                            schema:
+                              type: dict
+                              attrs:
+                                - variable: host
+                                  label: "Domain Name"
+                                  required: true
+                                  schema:
+                                    type: string
+                                - variable: paths
+                                  label: "paths"
+                                  schema:
+                                    type: list
+                                    default: []
+                                    items:
+                                      - variable: path
+                                        label: "Path"
+                                        schema:
+                                          type: dict
+                                          attrs:
+                                            - variable: path
+                                              label: "path"
+                                              schema:
+                                                type: string
+                                                required: true
+                                                default: "/"
+                                            - variable: pathType
+                                              label: "pathType"
+                                              schema:
+                                                type: string
+                                                required: true
+                                                default: "prefix"
                     - variable: certType
                       label: "Select Certificate Type"
                       schema:
@@ -283,9 +350,15 @@ questions:
                             description: "Self-Signed Certificate"
                           - value: "existingcert"
                             description: "Existing Certificate"
-                    - variable: existingcert
-                      label: "Existing Certificate Name"
+                        show_subquestions_if: "existingcert"
+                        subquestions:
+                          - variable: existingcert
+                            label: "Existing Certificate Name"
+                            schema:
+                              type: string
+                              default: ""
+                    - variable: authForwardURL
+                      label: "Forward Authentication URL"
                       schema:
                         type: string
-                        show_if: [["certType", "=", "existingcert"]]
                         default: ""
