@@ -1,5 +1,5 @@
 {{/*
-This template serves as a blueprint for all PersistentVolumeClaim objects that are created 
+This template serves as a blueprint for all PersistentVolumeClaim objects that are created
 within the common library.
 */}}
 {{- define "common.classes.pvc" -}}
@@ -35,6 +35,6 @@ spec:
     requests:
       storage: {{ required (printf "size is required for PVC %v" $pvcName) $values.size | quote }}
   {{- if $values.storageClass }}
-  storageClassName: {{ if (eq "-" $values.storageClass) }}""{{- else }}{{ $values.storageClass | quote }}{{- end }}
+  storageClassName: {{ include "common.storage.class" . }}
   {{- end }}
 {{- end -}}

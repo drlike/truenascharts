@@ -1,8 +1,7 @@
 {{/*
 Renders the additional ingress objects from appIngress
 */}}
-{{- define "common.custom.appIngress" -}}
-  {{- /* Generate TrueNAS SCALE app services as required v1 */ -}}
+{{- define "common.appIngress" -}}
   {{- if .Values.appIngress -}}
     {{- range $name, $ingr := .Values.appIngress }}
       {{- if $ingr.enabled -}}
@@ -11,24 +10,29 @@ Renders the additional ingress objects from appIngress
           {{- if not $ingressValues.nameSuffix -}}
             {{- $_ := set $ingressValues "nameSuffix" $name -}}
           {{ end -}}
-          {{- $_ := set $ "ObjectValues" (dict "appIngress" $ingressValues) -}}
+		  {{- $_ := set $ "ObjectValues" (dict "appIngress" $ingressValues) -}}
           {{- if $ingressValues.type -}}
             {{- if eq $ingressValues.type "UDP" -}}
-              {{- include "common.custom.classes.appIngressUDP" $ }}
+              {{- include "common.classes.appIngressUDP" $ | nindent 0 -}}
             {{- else if eq $ingressValues.type "TCP" -}}
-              {{- include "common.custom.classes.appIngressTCP" $ }}
+              {{- include "common.classes.appIngressTCP" $ | nindent 0 -}}
             {{- else }}
-              {{- include "common.custom.classes.appIngressHTTP" $ }}
+              {{- include "common.classes.appIngressHTTP" $ | nindent 0 -}}
 			  {{- if $ingressValues.authForwardURL }}
-                {{- include "common.custom.classes.appAuthForward" $ }}
+                {{- include "common.classes.appAuthForward" $ | nindent 0 -}}
               {{- end }}
             {{- end }}
           {{- else }}
-            {{- include "common.custom.classes.appIngressHTTP" $ }}
+            {{- include "common.classes.appIngressHTTP" $ | nindent 0 -}}
 			{{- if $ingressValues.authForwardURL }}
-              {{- include "common.custom.classes.appAuthForward" $ }}
+              {{- include "common.classes.appAuthForward" $ | nindent 0 -}}
             {{- end }}
           {{- end }}
+		  {{- $_ := set $ "ObjectValues" (dict "certHolder" $ingressValues) -}}
+		  {- if eq $ingressValues.certType "ixcert" -}}
+		  {{- print ("---") | nindent 0 -}}
+		  {{- include "common.resources.cert.secret" $ | nindent 0 -}}
+		  {{- else }}
       {{- end }}
     {{- end }}
   {{- end }}

@@ -1,8 +1,8 @@
 {{/*
-This template serves as a blueprint for all appIngressTCP objects that are created 
+This template serves as a blueprint for all appIngressTCP objects that are created
 within the common library.
 */}}
-{{- define "common.custom.classes.appIngressTCP" -}}
+{{- define "common.classes.appIngressTCP" -}}
 {{- $values := .Values.appIngress -}}
 {{- if hasKey . "ObjectValues" -}}
   {{- with .ObjectValues.appIngress -}}
@@ -23,7 +23,7 @@ metadata:
     {{- include "common.labels" . | nindent 4 }}
   annotations:
     {{- if or (eq $values.certType "letsencrypt-prod") (eq $values.certType "letsencrypt-staging") }}
-    cert-manager.io/cluster-issuer:  {{ $values.certType }} 
+    cert-manager.io/cluster-issuer:  {{ $values.certType }}
     {{- end }}
     {{- with $values.annotations }}
     {{- toYaml . | nindent 4 }}
@@ -48,8 +48,11 @@ spec:
             - {{ .host | quote }}
             {{- end }}
     {{- if eq $values.certType "selfsigned" -}}
+	secretName:
     {{ else if eq $values.certType "existingcert" }}
     secretName: {{ $values.existingcert }}
+	{{ else if eq $values.certType "ixcert" }}
+    secretName: {{ $IngressName }}
     {{ else if eq $values.certType "wildcard" }}
     secretName: wildcardcert
     {{ else }}
