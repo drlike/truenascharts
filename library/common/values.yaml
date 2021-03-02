@@ -454,6 +454,7 @@ addons:
 PUID: 568
 PGID: 568
 UMASK: "002"
+
 fixMountPermissions: true
 # appAdditionalServicesEnabled: false
 # appAdditionalServices:
@@ -493,8 +494,8 @@ fixMountPermissions: true
 #     hostPath: ""
 #     setPermissions: true
 
-# appExtraVolumeMounts:
-#   - name: "data"
+#
+#   data:
 #     enabled: false
 #     emptyDir: false
 #     datasetName: "data"
@@ -502,7 +503,6 @@ fixMountPermissions: true
 #     subPath: some-subpath
 #     hostPathEnabled: false
 #     hostPath: ""
-#     setPermissions: true
 
 # appIngress:
 #  main:

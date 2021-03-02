@@ -1,9 +1,7 @@
-## Currently only used as Bitnami Compatibility layer, may want to integrate more later
-
 {{/* vim: set filetype=mustache: */}}
 
 {{/*
-Return a soft nodeAffinity definition
+Return a soft nodeAffinity definition 
 {{ include "common.affinities.nodes.soft" (dict "key" "FOO" "values" (list "BAR" "BAZ")) -}}
 */}}
 {{- define "common.affinities.nodes.soft" -}}

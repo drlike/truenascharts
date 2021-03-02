@@ -1,31 +1,15 @@
 apiVersion: v2
-kubeVersion: ">=1.16.0-0"
 name: common-test
-version: 1.4.0
-# upstream_version:
-# appVersion:
 description: Helper chart to test different use cases of the common library
-type: application
-deprecated: false
-home: https://github.com/truecharts/charts/tree/master/library/common-test
-# icon:
+version: 1.3.0
+kubeVersion: ">=1.16.0-0"
 keywords:
-  - common-test
   - truecharts
   - common
-  - test
-sources:
-  - https://github.com/truecharts/charts/tree/master/library/common-test
+home: https://github.com/truecharts/truecharts/tree/master/charts/common-test
+maintainers:
+  - name: truecharts
 dependencies:
   - name: common
     repository: file://../common
     version: n/a
-    # condition:
-    # tags:
-    # import-values:
-    # alias:
-maintainers:
-  - name: TrueCharts
-    email: info@truecharts.org
-    url: truecharts.org
-# annotations:

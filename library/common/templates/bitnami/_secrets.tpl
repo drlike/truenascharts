@@ -1,4 +1,3 @@
-## Currently only used as Bitnami Compatibility layer, may want to integrate more later
 {{/* vim: set filetype=mustache: */}}
 {{/*
 Generate secret name.
@@ -99,7 +98,7 @@ Params:
   {{- $requiredPasswordError := include "common.validations.values.single.empty" $requiredPassword -}}
   {{- $passwordValidationErrors := list $requiredPasswordError -}}
   {{- include "common.errors.upgrade.passwords.empty" (dict "validationErrors" $passwordValidationErrors "context" $.context) -}}
-
+  
   {{- if .strong }}
     {{- $subStr := list (lower (randAlpha 1)) (randNumeric 1) (upper (randAlpha 1)) | join "_" }}
     {{- $password = randAscii $passwordLength }}

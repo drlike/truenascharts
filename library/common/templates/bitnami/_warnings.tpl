@@ -1,6 +1,3 @@
-## We might want to include more repositories in this warnings
-## This is mostly used to prevent chart maintainers using "latest" when version is available
-
 {{/* vim: set filetype=mustache: */}}
 {{/*
 Warning about using rolling tag.

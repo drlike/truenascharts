@@ -1,8 +1,8 @@
 {{/*
-This template serves as a blueprint for all appIngress objects that are created
+This template serves as a blueprint for all appIngress objects that are created 
 within the common library.
 */}}
-{{- define "common.classes.appIngressHTTP" -}}
+{{- define "common.custom.classes.appIngressHTTP" -}}
 {{- $values := .Values.appIngress -}}
 {{- if hasKey . "ObjectValues" -}}
   {{- with .ObjectValues.appIngress -}}
@@ -47,11 +47,8 @@ spec:
         - {{ .host | quote }}
         {{- end }}
       {{- if eq $values.certType "selfsigned" -}}
-	  secretName:
       {{ else if eq $values.certType "existingcert" }}
       secretName: {{ $values.existingcert }}
-      {{ else if eq $values.certType "ixcert" }}
-      secretName: {{ $IngressName }}
       {{ else if eq $values.certType "wildcard" }}
       secretName: wildcardcert
       {{ else }}
