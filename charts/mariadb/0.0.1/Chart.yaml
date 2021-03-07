@@ -1,0 +1,29 @@
+---
+apiVersion: v2
+appVersion: "10.5.8-r0"
+version: 0.0.1
+name: mariadb
+description: The open source relational database
+type: application
+home: "https://github.com/drlike/truenascharts/charts/mariadb"
+icon: "https://bitnami.com/assets/stacks/mariadb/img/mariadb-stack-220x234.png"
+dependencies:
+  - name: common
+    version: 1.6.5
+    repository: https://nicholaswilde.github.io/helm-charts/
+keywords:
+  - db
+  - database
+  - mariadb
+sources:
+  - https://mariadb.org/
+  - https://github.com/linuxserver/docker-mariadb
+maintainers:
+  - name: 
+    email: 
+annotations:
+  artifacthub.io/changes: |
+    - Replaced commented equal signs with colons in env and secret.
+  artifacthub.io/images: |
+    - name: mariadb
+      image: linuxserver/mariadb:alpine-10.5.8-r0-ls6
