@@ -200,70 +200,69 @@ questions:
       type: boolean
       default: false
 
-## TrueCharts Specific
-  # - variable: appVolumeMounts
-  #   label: "app storage"
-  #   group: "Storage"
-  #   schema:
-  #     type: dict
-  #     attrs:
-
-  #       - variable: data
-  #         label: "data dataset"
-  #         schema:
-  #           type: dict
-  #           $ref:
-  #             - "normalize/ixVolume"
-  #           attrs:
-  #             - variable: enabled
-  #               label: "Enabled"
-  #               schema:
-  #                 type: boolean
-  #                 default: true
-  #                 required: true
-  #                 hidden: true
-  #                 editable: false
-  #             - variable: setPermissions
-  #               label: "Automatic Permissions"
-  #               description: "Automatically set permissions on install"
-  #               schema:
-  #                 type: boolean
-  #                 default: true
-  #                 hidden: false 
-  #             - variable: emptyDir
-  #               label: "emptyDir"
-  #               schema:
-  #                 type: boolean
-  #                 default: false
-  #                 hidden: true
-  #                 editable: false
-  #             - variable: datasetName
-  #               label: "Dataset Name"
-  #               schema:
-  #                 type: string
-  #                 default: "data"
-  #                 required: true
-  #                 editable: true
-  #             - variable: mountPath
-  #               label: "Mount Path"
-  #               description: "Path to mount inside the pod"
-  #               schema:
-  #                 type: path
-  #                 required: true
-  #                 default: "/data"
-  #                 editable: false
-  #             - variable: hostPathEnabled
-  #               label: "host Path Enabled"
-  #               schema:
-  #                 type: boolean
-  #                 default: false
-  #                 show_subquestions_if: true
-  #                 subquestions:
-  #                   - variable: hostPath
-  #                     label: "Host Path"
-  #                     schema:
-  #                       type: hostpath
-  #                       required: true
+# TrueCharts Specific
+  - variable: appVolumeMounts
+    label: "app storage"
+    group: "Storage"
+    schema:
+      type: dict
+      attrs:
+        - variable: config
+          label: "Database dataset"
+          schema:
+            type: dict
+            $ref:
+              - "normalize/ixVolume"
+            attrs:
+              - variable: enabled
+                label: "Enabled"
+                schema:
+                  type: boolean
+                  default: true
+                  required: true
+                  hidden: true
+                  editable: false
+              - variable: setPermissions
+                label: "Automatic Permissions"
+                description: "Automatically set permissions on install"
+                schema:
+                  type: boolean
+                  default: true
+                  hidden: false 
+              - variable: emptyDir
+                label: "emptyDir"
+                schema:
+                  type: boolean
+                  default: false
+                  hidden: true
+                  editable: false
+              - variable: datasetName
+                label: "Dataset Name"
+                schema:
+                  type: string
+                  default: "config"
+                  required: true
+                  editable: true
+              - variable: mountPath
+                label: "Mount Path"
+                description: "Path to mount inside the pod"
+                schema:
+                  type: path
+                  required: true
+                  default: "/config"
+                  editable: false
+              - variable: hostPathEnabled
+                label: "host Path Enabled"
+                schema:
+                  type: boolean
+                  default: false
+                  show_subquestions_if: true
+                  subquestions:
+                    - variable: hostPath
+                      label: "Host Path"
+                      schema:
+                        type: hostpath
+                        required: true
                         
   # - variable: appIngress
   #   label: ""

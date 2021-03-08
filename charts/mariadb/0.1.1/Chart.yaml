@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 appVersion: "10.5.8-r0"
-version: 0.0.1
+version: 0.1.1
 name: mariadb
 description: The open source relational database
 type: application
