@@ -296,9 +296,9 @@ cronjob:
   # affinity: {}
 
 service:
-  type: ClusterIP
-  port: 8080
-  loadBalancerIP: nil
+  # type: ClusterIP
+  # port: 8080
+  # loadBalancerIP: nil
   nodePort: nil
 
 ## Enable persistence using Persistent Volume Claims
