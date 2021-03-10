@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 appVersion: "10.5.8-r0"
-version: 0.1.1
+version: 0.1.2
 name: mariadb
 description: The open source relational database
 type: application
@@ -9,7 +9,7 @@ home: "https://github.com/drlike/truenascharts/charts/mariadb"
 icon: "https://bitnami.com/assets/stacks/mariadb/img/mariadb-stack-220x234.png"
 dependencies:
   - name: common
-    version: 1.6.5
+    version: 1.6.7
     repository: https://nicholaswilde.github.io/helm-charts/
 keywords:
   - db
