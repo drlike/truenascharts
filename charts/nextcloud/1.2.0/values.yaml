@@ -180,7 +180,7 @@ nginx:
   resources: {}
 
 internalDatabase:
-  enabled: true
+  enabled: false
   name: nextcloud
 
 ##
@@ -219,6 +219,7 @@ mariadb:
   enabled: false
 
   db:
+    hostname: ix-mariadb
     name: nextcloud
     user: nextcloud
     password: changeme

@@ -168,7 +168,7 @@ questions:
                       label: "Host Path for Nextcloud Data Volume"
                       schema:
                         type: hostpath
-                        required: true
+                        required: true                   
 
   # - variable: postgresAppVolumeMounts
   #   label: "Postgres Storage"
