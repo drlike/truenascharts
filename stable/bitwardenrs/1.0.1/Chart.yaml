@@ -1,6 +1,6 @@
 apiVersion: v2
 kubeVersion: ">=1.16.0-0"
-name: bitwarden
+name: bitwardenrs
 version: 1.0.1
 upstream_version: 2.1.5
 appVersion: "auto"
