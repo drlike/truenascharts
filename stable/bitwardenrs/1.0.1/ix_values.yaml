@@ -25,6 +25,29 @@ envValueFrom:
       name: dbcreds
       key: url
 
+persistence:
+  data:
+    enabled: true
+    mountPath: "/data"
+    emptyDir: true
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: ""
+  db:
+    nameOverride: "db"
+    enabled: true
+    emptyDir: true
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: ""
+  dbbackup:
+    enabled: true
+    emptyDir: true
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: ""
+
+
 database:
   # Database type, must be one of: 'sqlite', 'mysql' or 'postgresql'.
   type: postgresql
