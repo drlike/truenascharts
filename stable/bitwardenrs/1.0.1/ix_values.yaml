@@ -19,7 +19,7 @@ envFrom:
       name: bitwardensecret
 
 
-envValueFrom:
+env:
   DATABASE_URL: "/date/bitwarden.sqlite3"
     # secretKeyRef:
     #   name: dbcreds
