@@ -19,8 +19,8 @@ envFrom:
       name: bitwardensecret
 
 
-envValueFrom:
-  DATABASE_URL: 
+# envValueFrom:
+#   DATABASE_URL: 
     # secretKeyRef:
     #   name: dbcreds
     #   key: url

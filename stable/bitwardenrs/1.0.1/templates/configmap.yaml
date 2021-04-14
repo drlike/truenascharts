@@ -5,6 +5,7 @@ metadata:
   labels:
   {{- include "common.labels" . | nindent 4 }}
 data:
+  DATABASE_URL: "/date/bitwarden.sqlite3"
   ROCKET_PORT: "8080"
   SIGNUPS_ALLOWED: {{ .Values.bitwardenrs.allowSignups | quote }}
   {{- if .Values.bitwardenrs.signupDomains }}
