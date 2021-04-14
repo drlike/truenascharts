@@ -21,9 +21,9 @@ envFrom:
 
 envValueFrom:
   DATABASE_URL:
-    secretKeyRef:
-      name: dbcreds
-      key: url
+#    secretKeyRef:
+#      name: dbcreds
+#      key: url
 
 database:
   # Database type, must be one of: 'sqlite', 'mysql' or 'postgresql'.
