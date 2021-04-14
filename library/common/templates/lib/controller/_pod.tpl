@@ -26,6 +26,10 @@ imagePullSecrets:
   {{- toYaml . | nindent 2 }}
 {{- end }}
 serviceAccountName: {{ include "common.names.serviceAccountName" . }}
+<<<<<<< HEAD
+{{- with .Values.podSecurityContext }}
+securityContext:
+=======
 securityContext:
 {{- if not .Values.startAsRoot }}
   runAsUser: {{ .Values.PUID }}
@@ -36,6 +40,7 @@ securityContext:
   runAsNonRoot: true
 {{- end }}
 {{- with .Values.podSecurityContext }}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
   {{- toYaml . | nindent 2 }}
 {{- end }}
 {{- with .Values.priorityClassName }}
@@ -50,6 +55,11 @@ hostNetwork: {{ . }}
 {{- with .Values.hostname }}
 hostname: {{ . }}
 {{- end }}
+<<<<<<< HEAD
+{{- with .Values.dnsPolicy }}
+dnsPolicy: {{ . }}
+{{- end }}
+=======
 {{- if .Values.dnsPolicy }}
 {{- with .Values.dnsPolicy }}
 dnsPolicy: {{ . }}
@@ -59,6 +69,7 @@ dnsPolicy: "ClusterFirstWithHostNet"
 {{- else }}
 dnsPolicy: ClusterFirst
 {{- end }}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- with .Values.dnsConfig }}
 dnsConfig:
   {{- toYaml . | nindent 2 }}

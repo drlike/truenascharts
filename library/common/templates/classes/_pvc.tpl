@@ -28,9 +28,13 @@ within the common library.
   {{- end -}}
 {{ end -}}
 {{- $pvcName := include "common.names.fullname" . -}}
+<<<<<<< HEAD
+{{- if hasKey $values "nameSuffix" -}}
+=======
 {{- if hasKey $values "nameOverride" -}}
   {{- $pvcName = $values.nameOverride -}}
 {{- else if hasKey $values "nameSuffix" -}}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
   {{- $pvcName = printf "%v-%v" $pvcName $values.nameSuffix -}}
 {{ end -}}
 kind: PersistentVolumeClaim
@@ -56,7 +60,10 @@ spec:
       storage: {{ required (printf "size is required for PVC %v" $pvcName) $values.size | quote }}
   {{- if $values.storageClass }}
   storageClassName: {{ include "common.storage.class" . }}
+<<<<<<< HEAD
+=======
   {{- else }}
   storageClassName: {{ ( printf "%v-%v"  "ix-storage-class" .Release.Name ) }}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
   {{- end }}
 {{- end -}}

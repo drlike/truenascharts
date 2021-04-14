@@ -76,7 +76,11 @@ The main container included in the controller.
   {{- include "common.controller.ports" . | trim | nindent 2 }}
   volumeMounts:
   {{- range $index, $PVC := .Values.persistence }}
+<<<<<<< HEAD
+  {{- if $PVC.enabled }}
+=======
   {{- if and ( $PVC.enabled ) ( $PVC.mountPath ) }}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
   - mountPath: {{ $PVC.mountPath }}
     name: {{ $index }}
   {{- if $PVC.subPath }}
@@ -98,6 +102,19 @@ The main container included in the controller.
   {{- end }}
   {{- end }}
   {{- include "common.controller.probes" . | nindent 2 }}
+<<<<<<< HEAD
+  {{- with .Values.resources }}
+  resources:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- if and .Values.gpuConfiguration .Values.resources }}
+    limits:
+      {{- toYaml .Values.gpuConfiguration | nindent 14 }}
+  {{- else if .Values.gpuConfiguration }}
+  resources:
+    limits:
+      {{- toYaml .Values.gpuConfiguration | nindent 14 }}
+=======
   resources:
   {{- with .Values.resources }}
     {{- toYaml . | nindent 4 }}
@@ -105,5 +122,6 @@ The main container included in the controller.
   {{- if and .Values.gpuConfiguration }}
     limits:
       {{- toYaml .Values.gpuConfiguration | nindent 6 }}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
   {{- end }}
 {{- end -}}

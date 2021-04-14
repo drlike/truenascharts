@@ -3,6 +3,14 @@ This template serves as the blueprint for the mountPermissions job that is run
 before chart installation.
 */}}
 {{- define "common.storage.permissions" -}}
+<<<<<<< HEAD
+{{- if and .Values.appVolumeMounts .Values.fixMountPermissions }}
+{{- range $name, $avm := .Values.appVolumeMounts -}}
+{{- if and $avm.enabled $avm.setPermissions}}
+{{- print "---" | nindent 0 -}}
+
+{{- $VMValues := $avm -}}
+=======
 {{- if .Values.fixMountPermissions }}
 
 {{- if .Values.appVolumeMounts }}
@@ -11,6 +19,7 @@ before chart installation.
 {{- print "---" | nindent 0 -}}
 
 {{- $VMValues := $vm -}}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- if not $VMValues.nameSuffix -}}
   {{- $_ := set $VMValues "nameSuffix" $name -}}
 {{ end -}}
@@ -20,6 +29,8 @@ before chart installation.
 {{- end }}
 {{- end }}
 {{- end }}
+<<<<<<< HEAD
+=======
 
 
 {{- if .Values.additionalAppVolumeMounts }}
@@ -39,4 +50,5 @@ before chart installation.
 {{- end }}
 
 {{- end }}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- end }}

@@ -21,7 +21,11 @@ This file is considered to be modified by the TrueCharts Project.
 Probes selection logic.
 */}}
 {{- define "common.controller.probes" -}}
+<<<<<<< HEAD
+{{- $svcPort := .Values.service.port.name -}}
+=======
 {{- $svcPort := .Values.services.main.port.name -}}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- range $probeName, $probe := .Values.probes }}
   {{- if $probe.enabled -}}
     {{- "" | nindent 0 }}

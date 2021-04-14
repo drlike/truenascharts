@@ -1,5 +1,16 @@
 image:
   repository: b4bz/homer
+<<<<<<< HEAD
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  port:
+    port: 8080
+
+ingress:
+  enabled: true
+=======
   tag: 21.03.2
   pullPolicy: IfNotPresent
 
@@ -53,6 +64,7 @@ additionalIngress:
     enabled: true
   - name: "test4"
     enabled: true
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 
 # these values and names are set specifically with the unittests in mind.
 fixMountPermissions: false
@@ -88,3 +100,25 @@ additionalAppVolumeMounts:
     mountPath: "/test4"
     hostPathEnabled: true
     hostPath: "/tmp"
+<<<<<<< HEAD
+
+appAdditionalServicesEnabled: true
+appAdditionalServices:
+  extra-tcp:
+    enabled: true
+    type: ClusterIP
+    port:
+      port: 51414
+      name: tcp-test
+      protocol: TCP
+      targetPort: 51414
+  extra-udp:
+    enabled: true
+    type: ClusterIP
+    port:
+      port: 51414
+      name: udp-test
+      protocol: UDP
+      targetPort: 51414
+=======
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a

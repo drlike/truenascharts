@@ -33,6 +33,8 @@ of all the entries of the persistence key.
       {{- include "common.classes.pvc" $ -}}
     {{- end }}
   {{- end }}
+<<<<<<< HEAD
+=======
 
   {{/*
   This is kept seperate, to enable us ot add "persistence" to questions.yaml and keep this out of it
@@ -48,4 +50,5 @@ of all the entries of the persistence key.
       {{- include "common.classes.pvc" $ -}}
     {{- end }}
   {{- end }}
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- end }}

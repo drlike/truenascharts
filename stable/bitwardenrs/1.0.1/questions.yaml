@@ -429,18 +429,21 @@ questions:
     schema:
       type: boolean
       default: false
+      hidden: true
 
   - variable: services
     group: "Networking"
     label: "Configure Service"
     schema:
       type: dict
+      hidden: true
       attrs:
         - variable: main
           label: "Main service"
           description: "The Primary service on which the healthcheck runs, often the webUI"
           schema:
             type: dict
+            hidden: true
             attrs:
               - variable: enabled
                 label: "Enable the service"
@@ -454,9 +457,8 @@ questions:
                 schema:
                   type: string
                   default: "ClusterIP"
+                  hidden: true
                   enum:
-                    - value: "NodePort"
-                      description: "NodePort"
                     - value: "ClusterIP"
                       description: "ClusterIP"
               - variable: port
@@ -469,12 +471,10 @@ questions:
                       schema:
                         type: string
                         default: "HTTP"
-                        hidden: false
+                        hidden: true
                         enum:
                           - value: HTTP
                             description: "HTTP"
-                          - value: "HTTPS"
-                            description: "HTTPS"
                     - variable: port
                       label: "container port"
                       schema:
@@ -499,11 +499,13 @@ questions:
                         max: 65535
                         default: 36052
                         required: true
+                        hidden: true
         - variable: ws
           label: "Websocket service"
           description: "Websocket Service"
           schema:
             type: dict
+            hidden: true
             attrs:
               - variable: enabled
                 label: "Enable the service"
@@ -517,9 +519,8 @@ questions:
                 schema:
                   type: string
                   default: "ClusterIP"
+                  hidden: true
                   enum:
-                    - value: "NodePort"
-                      description: "NodePort"
                     - value: "ClusterIP"
                       description: "ClusterIP"
               - variable: port
@@ -532,12 +533,10 @@ questions:
                       schema:
                         type: string
                         default: "HTTP"
-                        hidden: false
+                        hidden: true
                         enum:
                           - value: HTTP
                             description: "HTTP"
-                          - value: "HTTPS"
-                            description: "HTTPS"
                     - variable: port
                       label: "container port"
                       schema:
@@ -562,180 +561,181 @@ questions:
                         max: 65535
                         default: 36053
                         required: true
+                        hidden: true
 
 
 ## TrueCharts Specific
 
-  - variable: persistence
-    label: "Integrated Persistent Storage"
-    description: "Websocket Service"
-    group: "Storage"
-    schema:
-      type: dict
-      attrs:
-        - variable: data
-          label: "App Config Storage"
-          description: "Stores the Application Configuration."
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enable the storage"
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: storageClass
-                label: "Type of Storage"
-                description: " Warning: Anything other than Internal will break rollback!"
-                schema:
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Internal"
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  type: string
-                  default: "/data"
-                  hidden: true
-              - variable: emptyDir
-                label: "Mount a ramdisk instead of actual storage"
-                schema:
-                  type: boolean
-                  default: false
-                  hidden: true
-              - variable: accessMode
-                label: "Access Mode (Advanced)"
-                description: "Allow or disallow multiple PVC's writhing to the same PVC"
-                schema:
-                  type: string
-                  default: "ReadWriteOnce"
-                  enum:
-                    - value: "ReadWriteOnce"
-                      description: "ReadWriteOnce"
-                    - value: "ReadOnlyMany"
-                      description: "ReadOnlyMany"
-                    - value: "ReadWriteMany"
-                      description: "ReadWriteMany"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  type: string
-                  default: "100Gi"
-        - variable: db
-          label: "Database Storage"
-          description: "Stores the Application database."
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enable the storage"
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: nameOverride
-                label: "Override PVC Name (advanced)"
-                description: "Forces a certain name for the PVC"
-                schema:
-                  type: string
-                  default: "db"
-                  hidden: true
-              - variable: storageClass
-                label: "Type of Storage"
-                description: " Warning: Anything other than Internal will break rollback!"
-                schema:
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Internal"
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  type: string
-                  default: ""
-                  hidden: true
-              - variable: emptyDir
-                label: "Mount a ramdisk instead of actual storage"
-                schema:
-                  type: boolean
-                  default: false
-                  hidden: true
-              - variable: accessMode
-                label: "Access Mode (Advanced)"
-                description: "Allow or disallow multiple PVC's writhing to the same PVC"
-                schema:
-                  type: string
-                  default: "ReadWriteOnce"
-                  enum:
-                    - value: "ReadWriteOnce"
-                      description: "ReadWriteOnce"
-                    - value: "ReadOnlyMany"
-                      description: "ReadOnlyMany"
-                    - value: "ReadWriteMany"
-                      description: "ReadWriteMany"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  type: string
-                  default: "100Gi"
-        - variable: dbbackup
-          label: "Database Backup Storage"
-          description: "Stores the Application database backups."
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enable the storage"
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: storageClass
-                label: "Type of Storage"
-                description: " Warning: Anything other than Internal will break rollback!"
-                schema:
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Internal"
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  type: string
-                  default: ""
-                  hidden: true
-              - variable: emptyDir
-                label: "Mount a ramdisk instead of actual storage"
-                schema:
-                  type: boolean
-                  default: false
-                  hidden: true
-              - variable: accessMode
-                label: "Access Mode (Advanced)"
-                description: "Allow or disallow multiple PVC's writhing to the same PVC"
-                schema:
-                  type: string
-                  default: "ReadWriteOnce"
-                  enum:
-                    - value: "ReadWriteOnce"
-                      description: "ReadWriteOnce"
-                    - value: "ReadOnlyMany"
-                      description: "ReadOnlyMany"
-                    - value: "ReadWriteMany"
-                      description: "ReadWriteMany"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  type: string
-                  default: "100Gi"
+  # - variable: persistence
+  #   label: "Integrated Persistent Storage"
+  #   description: "Websocket Service"
+  #   group: "Storage"
+  #   schema:
+  #     type: dict
+  #     attrs:
+  #       - variable: data
+  #         label: "App Config Storage"
+  #         description: "Stores the Application Configuration."
+  #         schema:
+  #           type: dict
+  #           attrs:
+  #             - variable: enabled
+  #               label: "Enable the storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: true
+  #                 hidden: true
+  #             - variable: storageClass
+  #               label: "Type of Storage"
+  #               description: " Warning: Anything other than Internal will break rollback!"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 enum:
+  #                   - value: ""
+  #                     description: "Internal"
+  #             - variable: mountPath
+  #               label: "mountPath"
+  #               description: "Path inside the container the storage is mounted"
+  #               schema:
+  #                 type: string
+  #                 default: "/data"
+  #                 hidden: true
+  #             - variable: emptyDir
+  #               label: "Mount a ramdisk instead of actual storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: false
+  #                 hidden: true
+  #             - variable: accessMode
+  #               label: "Access Mode (Advanced)"
+  #               description: "Allow or disallow multiple PVC's writhing to the same PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "ReadWriteOnce"
+  #                 enum:
+  #                   - value: "ReadWriteOnce"
+  #                     description: "ReadWriteOnce"
+  #                   - value: "ReadOnlyMany"
+  #                     description: "ReadOnlyMany"
+  #                   - value: "ReadWriteMany"
+  #                     description: "ReadWriteMany"
+  #             - variable: size
+  #               label: "Size quotum of storage"
+  #               schema:
+  #                 type: string
+  #                 default: "100Gi"
+  #       - variable: db
+  #         label: "Database Storage"
+  #         description: "Stores the Application database."
+  #         schema:
+  #           type: dict
+  #           attrs:
+  #             - variable: enabled
+  #               label: "Enable the storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: true
+  #                 hidden: true
+  #             - variable: nameOverride
+  #               label: "Override PVC Name (advanced)"
+  #               description: "Forces a certain name for the PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "db"
+  #                 hidden: true
+  #             - variable: storageClass
+  #               label: "Type of Storage"
+  #               description: " Warning: Anything other than Internal will break rollback!"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 enum:
+  #                   - value: ""
+  #                     description: "Internal"
+  #             - variable: mountPath
+  #               label: "mountPath"
+  #               description: "Path inside the container the storage is mounted"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 hidden: true
+  #             - variable: emptyDir
+  #               label: "Mount a ramdisk instead of actual storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: false
+  #                 hidden: true
+  #             - variable: accessMode
+  #               label: "Access Mode (Advanced)"
+  #               description: "Allow or disallow multiple PVC's writhing to the same PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "ReadWriteOnce"
+  #                 enum:
+  #                   - value: "ReadWriteOnce"
+  #                     description: "ReadWriteOnce"
+  #                   - value: "ReadOnlyMany"
+  #                     description: "ReadOnlyMany"
+  #                   - value: "ReadWriteMany"
+  #                     description: "ReadWriteMany"
+  #             - variable: size
+  #               label: "Size quotum of storage"
+  #               schema:
+  #                 type: string
+  #                 default: "100Gi"
+  #       - variable: dbbackup
+  #         label: "Database Backup Storage"
+  #         description: "Stores the Application database backups."
+  #         schema:
+  #           type: dict
+  #           attrs:
+  #             - variable: enabled
+  #               label: "Enable the storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: true
+  #                 hidden: true
+  #             - variable: storageClass
+  #               label: "Type of Storage"
+  #               description: " Warning: Anything other than Internal will break rollback!"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 enum:
+  #                   - value: ""
+  #                     description: "Internal"
+  #             - variable: mountPath
+  #               label: "mountPath"
+  #               description: "Path inside the container the storage is mounted"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 hidden: true
+  #             - variable: emptyDir
+  #               label: "Mount a ramdisk instead of actual storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: false
+  #                 hidden: true
+  #             - variable: accessMode
+  #               label: "Access Mode (Advanced)"
+  #               description: "Allow or disallow multiple PVC's writhing to the same PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "ReadWriteOnce"
+  #                 enum:
+  #                   - value: "ReadWriteOnce"
+  #                     description: "ReadWriteOnce"
+  #                   - value: "ReadOnlyMany"
+  #                     description: "ReadOnlyMany"
+  #                   - value: "ReadWriteMany"
+  #                     description: "ReadWriteMany"
+  #             - variable: size
+  #               label: "Size quotum of storage"
+  #               schema:
+  #                 type: string
+  #                 default: "100Gi"
 
   - variable: additionalAppVolumeMounts
     label: "Custom app storage"
@@ -813,77 +813,76 @@ questions:
                 label: "Enable Web Reverse Proxy"
                 schema:
                   type: boolean
-                  default: false
-                  show_subquestions_if: true
-                  subquestions:
-                    - variable: type
-                      label: "Reverse Proxy Type"
+                  default: true
+                  hidden: true
+              - variable: type
+                label: "Reverse Proxy Type"
+                schema:
+                  type: string
+                  default: "HTTP"
+                  hidden: true
+                  editable: false
+                  required: true
+              - variable: serviceName
+                label: "Service name to proxy to"
+                schema:
+                  hidden: true
+                  editable: false
+                  type: string
+                  default: ""
+              - variable: entrypoint
+                label: "Select Entrypoint"
+                schema:
+                  type: string
+                  default: "websecure"
+                  required: true
+                  enum:
+                    - value: "websecure"
+                      description: "Websecure: HTTPS/TLS port 443"
+              - variable: hosts
+                label: "Hosts"
+                schema:
+                  type: list
+                  default: []
+                  items:
+                    - variable: host
+                      label: "Host"
                       schema:
-                        type: string
-                        default: "HTTP"
-                        hidden: true
-                        editable: false
-                        required: true
-                    - variable: serviceName
-                      label: "Service name to proxy to"
-                      schema:
-                        hidden: true
-                        editable: false
-                        type: string
-                        default: ""
-                    - variable: entrypoint
-                      label: "Select Entrypoint"
-                      schema:
-                        type: string
-                        default: "websecure"
-                        required: true
-                        enum:
-                          - value: "websecure"
-                            description: "Websecure: HTTPS/TLS port 443"
-                    - variable: hosts
-                      label: "Hosts"
-                      schema:
-                        type: list
-                        default: []
-                        items:
+                        type: dict
+                        attrs:
                           - variable: host
-                            label: "Host"
+                            label: "Domain Name"
+                            required: true
                             schema:
-                              type: dict
-                              attrs:
-                                - variable: host
-                                  label: "Domain Name"
-                                  required: true
-                                  schema:
-                                    type: string
-                                - variable: path
-                                  label: "path"
-                                  schema:
-                                    type: string
-                                    required: true
-                                    hidden: true
-                                    default: "/"
-                    - variable: certType
-                      label: "Select Certificate Type"
-                      schema:
-                        type: string
-                        default: "selfsigned"
-                        enum:
-                          - value: ""
-                            description: "No Encryption/TLS/Certificates"
-                          - value: "selfsigned"
-                            description: "Self-Signed Certificate"
-                          - value: "ixcert"
-                            description: "TrueNAS SCALE Certificate"
-                    - variable: certificate
-                      label: "Select TrueNAS SCALE Certificate"
-                      schema:
-                        type: int
-                        show_if: [["certType", "=", "ixcert"]]
-                        $ref:
-                          - "definitions/certificate"
-                    - variable: authForwardURL
-                      label: "Forward Authentication URL"
-                      schema:
-                        type: string
-                        default: ""
+                              type: string
+                          - variable: path
+                            label: "path"
+                            schema:
+                              type: string
+                              required: true
+                              hidden: true
+                              default: "/"
+              - variable: certType
+                label: "Select Certificate Type"
+                schema:
+                  type: string
+                  default: "selfsigned"
+                  enum:
+                    - value: ""
+                      description: "No Encryption/TLS/Certificates"
+                    - value: "selfsigned"
+                      description: "Self-Signed Certificate"
+                    - value: "ixcert"
+                      description: "TrueNAS SCALE Certificate"
+              - variable: certificate
+                label: "Select TrueNAS SCALE Certificate"
+                schema:
+                  type: int
+                  show_if: [["certType", "=", "ixcert"]]
+                  $ref:
+                    - "definitions/certificate"
+              - variable: authForwardURL
+                label: "Forward Authentication URL"
+                schema:
+                  type: string
+                  default: ""

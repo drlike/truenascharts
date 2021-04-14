@@ -66,8 +66,12 @@ envFrom: []
 # When using hostNetwork make sure you set dnsPolicy to ClusterFirstWithHostNet
 hostNetwork: false
 
+<<<<<<< HEAD
+dnsPolicy: ClusterFirst
+=======
 ## Default get based on hostNetwork setting
 # dnsPolicy: ClusterFirst
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 
 # Optional DNS settings, configuring the ndots option may resolve
 # nslookup issues on some Kubernetes setups.
@@ -85,7 +89,10 @@ enableServiceLinks: true
 podSecurityContext: {}
 
 # Configure the Security Context for the main container
+<<<<<<< HEAD
+=======
 # PUID and PGID gets added automatically!
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 securityContext: {}
 
 initContainers: []
@@ -101,7 +108,11 @@ probes:
     ## The spec field contains the values for the default livenessProbe.
     ## If you selected custom: true, this field holds the definition of the livenessProbe.
     spec:
+<<<<<<< HEAD
+      initialDelaySeconds: 30
+=======
       initialDelaySeconds: 0
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
       periodSeconds: 10
       timeoutSeconds: 10
       failureThreshold: 5
@@ -113,7 +124,11 @@ probes:
     ## The spec field contains the values for the default readinessProbe.
     ## If you selected custom: true, this field holds the definition of the readinessProbe.
     spec:
+<<<<<<< HEAD
+      initialDelaySeconds: 30
+=======
       initialDelaySeconds: 0
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
       periodSeconds: 10
       timeoutSeconds: 10
       failureThreshold: 5
@@ -125,12 +140,101 @@ probes:
     ## The spec field contains the values for the default startupProbe.
     ## If you selected custom: true, this field holds the definition of the startupProbe.
     spec:
+<<<<<<< HEAD
+      initialDelaySeconds: 5
+=======
       initialDelaySeconds: 0
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
       timeoutSeconds: 10
       ## This means it has a maximum of 5*30=150 seconds to start up before it fails
       periodSeconds: 10
       failureThreshold: 30
 
+<<<<<<< HEAD
+service:
+  enabled: true
+  type: ClusterIP
+  ## Specify the default port information
+  port:
+    port:
+    ## name defaults to http
+    name:
+    protocol: TCP
+    ## Specify a service targetPort if you wish to differ the service port from the application port.
+    ## If targetPort is specified, this port number is used in the container definition instead of
+    ## service.port.port. Therefore named ports are not supported for this field.
+    targetPort:
+    ## Specify the nodePort value for the LoadBalancer and NodePort service types.
+    ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
+    ##
+    # nodePort:
+  additionalPorts: []
+
+  ## Provide any additional annotations which may be required. This can be used to
+  ## set the LoadBalancer service type to internal only.
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
+  ##
+  annotations: {}
+  labels: {}
+
+  additionalServices: []
+  # - enabled: false
+  #   nameSuffix: api
+  #   type: ClusterIP
+  #   # Specify the default port information
+  #   port:
+  #     port:
+  #     # name defaults to http
+  #     name:
+  #     protocol: TCP
+  #     # targetPort defaults to http
+  #     targetPort:
+  #     # nodePort:
+  #   additionalPorts: []
+  #   annotations: {}
+  #   labels: {}
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  labels: {}
+  hosts:
+    - host: chart-example.local
+      ## Or a tpl that is evaluated
+      # hostTpl: '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
+      paths:
+        - path: /
+          # Ignored if not kubeVersion >= 1.14-0
+          pathType: Prefix
+  tls: []
+  #  - secretName: chart-example-tls
+  ## Or if you need a dynamic secretname
+  #  - secretNameTpl: '{{ include "common.names.fullname" . }}-ingress'
+  #    hosts:
+  #      - chart-example.local
+  ## Or a tpl that is evaluated
+  #    hostsTpl:
+  #      - '{{ include "common.names.fullname" . }}.{{ .Release.Namespace }}.{{ .Values.ingress.domainname }}'
+  additionalIngresses: []
+  # - enabled: false
+  #   nameSuffix: "api"
+  #   annotations: {}
+  #   # kubernetes.io/ingress.class: nginx
+  #   # kubernetes.io/tls-acme: "true"
+  #   labels: {}
+  #   hosts:
+  #     - host: chart-example.local
+  #       paths:
+  #         - path: /api
+  #           # Ignored if not kubeVersion >= 1.14-0
+  #           pathType: Prefix
+  #   tls: []
+  #   #  - secretName: chart-example-tls
+  #   #    hosts:
+  #   #      - chart-example.local
+=======
 services:
   main:
     enabled: true
@@ -212,6 +316,7 @@ additionalServices: []
 #    #  - secretName: chart-example-tls
 #    #    hosts:
 #    #      - chart-example.local
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 
 persistence:
   config:
@@ -241,6 +346,8 @@ persistence:
     emptyDir: true
     mountPath: /shared
 
+<<<<<<< HEAD
+=======
 # Special PVC instance, that does get affected by putting "persistence" into questions.yaml
 backupPersistence:
   buildinbackup:
@@ -264,6 +371,7 @@ backupPersistence:
     ## Set to true to retain the PVC upon helm uninstall
     skipuninstall: false
 
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 additionalVolumes: []
 
 additionalVolumeMounts: []
@@ -312,8 +420,38 @@ resources: {}
 PUID: 568
 PGID: 568
 UMASK: "002"
+<<<<<<< HEAD
+fixMountPermissions: true
+# appAdditionalServicesEnabled: false
+# appAdditionalServices:
+#   api:
+#     enabled: false
+#     type: NodePort
+#     protocol: TCP
+#     port:
+#       port: 8091
+#       nodePort: 38091
+#     additionalPorts: []
+#       - name: api-alt
+#         port: 8092
+#         targetPort: 8092
+#         protocol: TCP
+#         nodePort: 38092
+#   ws:
+#     enabled: false
+#     type: ClusterIP
+#     port:
+#       port: 3000
+#     additionalPorts: {}
+#       foo:
+#         name: ws-alt
+#         protocol: TCP
+#         port: 3001
+#         targetPort: 3001
+=======
 startAsRoot: false
 fixMountPermissions: true
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 
 # appVolumeMounts:
 #   config:
@@ -336,3 +474,43 @@ fixMountPermissions: true
 #     hostPathEnabled: false
 #     hostPath: ""
 #     setPermissions: true
+<<<<<<< HEAD
+
+# appIngress:
+#  main:
+#    enabled: false
+#    entrypoint: "websecure"
+#    certType: "letsencrypt-prod"
+#    existingcert: ""
+#    authForwardURL: ""
+#    annotations: {}
+#    labels: {}
+#    hosts:
+#      - host: app.truecharts.placeholder
+#        paths:
+#          - path: /
+#            # Ignored if not kubeVersion >= 1.14-0
+#            pathType: Prefix
+#
+#  maintcp:
+#    enabled: false
+#    type: "TCP"
+#    entrypoint: "kms"
+#    certType: "none"
+#    existingcert: ""
+#    annotations: {}
+#    labels: {}
+#    hosts:
+#      - host: app.truecharts.placeholder
+#        paths:
+#          - path: /
+#            # Ignored if not kubeVersion >= 1.14-0
+#            pathType: Prefix
+#  mainudp:
+#    enabled: false
+#    type: "UDP"
+#    entrypoint: "DNSUDP"
+#    annotations: {}
+#    labels: {}
+=======
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a

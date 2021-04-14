@@ -4,7 +4,11 @@
 
 Function library for TrueCharts
 
+<<<<<<< HEAD
+**Homepage:** <https://github.com/truecharts/truecharts/tree/master/common>
+=======
 **Homepage:** <https://github.com/truecharts/apps/tree/master/common>
+>>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 
 ## Maintainers
 
