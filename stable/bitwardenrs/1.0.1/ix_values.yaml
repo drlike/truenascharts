@@ -19,11 +19,11 @@ envFrom:
       name: bitwardensecret
 
 
-# envValueFrom:
-#   DATABASE_URL: 
-    # secretKeyRef:
-    #   name: dbcreds
-    #   key: url
+envValueFrom:
+  DATABASE_URL: 
+      configMapKeyRef:
+        name: bitwardenconfig
+        key: DATABASE_URL
 
 persistence:
   data:
