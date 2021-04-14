@@ -30,9 +30,9 @@ persistence:
     enabled: false
     mountPath: "/data"
     emptyDir: false
-    # accessMode: ReadWriteOnce
-    # size: 1Gi
-    # storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    storageClass: ""
   db:
     nameOverride: "db"
     enabled: true
