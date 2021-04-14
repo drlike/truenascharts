@@ -20,19 +20,19 @@ envFrom:
 
 
 envValueFrom:
-  DATABASE_URL:
+  DATABASE_URL: "/date/bitwarden.sqlite3"
     # secretKeyRef:
     #   name: dbcreds
     #   key: url
 
 persistence:
   data:
-    enabled: true
+    enabled: false
     mountPath: "/data"
-    emptyDir: true
-    accessMode: ReadWriteOnce
-    size: 1Gi
-    storageClass: ""
+    emptyDir: false
+    # accessMode: ReadWriteOnce
+    # size: 1Gi
+    # storageClass: ""
   db:
     nameOverride: "db"
     enabled: true
