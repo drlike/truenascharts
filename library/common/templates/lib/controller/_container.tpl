@@ -23,7 +23,6 @@ The main container included in the controller.
 {{- define "common.controller.mainContainer" -}}
 - name: {{ include "common.names.fullname" . }}
   image: "{{ include "common.images.image" (dict "imageRoot" .Values.image "global" .Values.global) }}"
-  {{ include "common.warnings.rollingTag" .Values.image }}
   imagePullPolicy: {{ .Values.image.pullPolicy }}
   {{- with .Values.command }}
   command: {{ . }}
@@ -74,47 +73,14 @@ The main container included in the controller.
     {{- toYaml . | nindent 12 }}
   {{- end }}
   {{- include "common.controller.ports" . | trim | nindent 2 }}
+
+  {{- with (include "common.controller.volumeMounts" . | trim) }}
   volumeMounts:
-  {{- range $index, $PVC := .Values.persistence }}
-<<<<<<< HEAD
-  {{- if $PVC.enabled }}
-=======
-  {{- if and ( $PVC.enabled ) ( $PVC.mountPath ) }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
-  - mountPath: {{ $PVC.mountPath }}
-    name: {{ $index }}
-  {{- if $PVC.subPath }}
-    subPath: {{ $PVC.subPath }}
+    {{- . | nindent 2 }}
   {{- end }}
-  {{- end }}
-  {{- end }}
-  {{ include "common.storage.allContainerVolumeMounts" . | nindent 2 }}
-  {{- if .Values.additionalVolumeMounts }}
-    {{- toYaml .Values.additionalVolumeMounts | nindent 2 }}
-  {{- end }}
-  {{- if eq .Values.controllerType "statefulset"  }}
-  {{- range $index, $vct := .Values.volumeClaimTemplates }}
-  - mountPath: {{ $vct.mountPath }}
-    name: {{ $vct.name }}
-  {{- if $vct.subPath }}
-    subPath: {{ $vct.subPath }}
-  {{- end }}
-  {{- end }}
-  {{- end }}
+
+
   {{- include "common.controller.probes" . | nindent 2 }}
-<<<<<<< HEAD
-  {{- with .Values.resources }}
-  resources:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
-  {{- if and .Values.gpuConfiguration .Values.resources }}
-    limits:
-      {{- toYaml .Values.gpuConfiguration | nindent 14 }}
-  {{- else if .Values.gpuConfiguration }}
-  resources:
-    limits:
-      {{- toYaml .Values.gpuConfiguration | nindent 14 }}
-=======
   resources:
   {{- with .Values.resources }}
     {{- toYaml . | nindent 4 }}
@@ -122,6 +88,5 @@ The main container included in the controller.
   {{- if and .Values.gpuConfiguration }}
     limits:
       {{- toYaml .Values.gpuConfiguration | nindent 6 }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
   {{- end }}
 {{- end -}}

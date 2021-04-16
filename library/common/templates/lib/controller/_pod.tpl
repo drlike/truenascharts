@@ -1,22 +1,3 @@
-{{/*
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-`SPDX-License-Identifier: Apache-2.0`
-
-This file is considered to be modified by the TrueCharts Project.
-*/}}
-
-
 {{- /*
 The pod definition included in the controller.
 */ -}}
@@ -26,21 +7,8 @@ imagePullSecrets:
   {{- toYaml . | nindent 2 }}
 {{- end }}
 serviceAccountName: {{ include "common.names.serviceAccountName" . }}
-<<<<<<< HEAD
 {{- with .Values.podSecurityContext }}
 securityContext:
-=======
-securityContext:
-{{- if not .Values.startAsRoot }}
-  runAsUser: {{ .Values.PUID }}
-  runAsGroup: {{ .Values.PGID }}
-  fsGroup: {{ .Values.PGID }}
-  # 5=tty 20=dailout 24=cdrom 44=video 107=render
-  supplementalGroups: [{{- .Values.supplementalGroups }}]
-  runAsNonRoot: true
-{{- end }}
-{{- with .Values.podSecurityContext }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
   {{- toYaml . | nindent 2 }}
 {{- end }}
 {{- with .Values.priorityClassName }}
@@ -55,11 +23,6 @@ hostNetwork: {{ . }}
 {{- with .Values.hostname }}
 hostname: {{ . }}
 {{- end }}
-<<<<<<< HEAD
-{{- with .Values.dnsPolicy }}
-dnsPolicy: {{ . }}
-{{- end }}
-=======
 {{- if .Values.dnsPolicy }}
 {{- with .Values.dnsPolicy }}
 dnsPolicy: {{ . }}
@@ -69,7 +32,6 @@ dnsPolicy: "ClusterFirstWithHostNet"
 {{- else }}
 dnsPolicy: ClusterFirst
 {{- end }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- with .Values.dnsConfig }}
 dnsConfig:
   {{- toYaml . | nindent 2 }}

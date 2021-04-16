@@ -21,30 +21,20 @@ This template serves as a blueprint for all Service objects that are created
 within the common library.
 */}}
 {{- define "common.classes.service" -}}
-<<<<<<< HEAD
-{{- $values := .Values.service -}}
-=======
 {{- $values := .Values.services.main -}}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- if hasKey . "ObjectValues" -}}
   {{- with .ObjectValues.service -}}
     {{- $values = . -}}
   {{- end -}}
 {{ end -}}
-<<<<<<< HEAD
-{{- $serviceName := include "common.names.fullname" . -}}
-=======
 
 {{- $serviceName := include "common.names.fullname" . -}}
 
 
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- if hasKey $values "nameSuffix" -}}
   {{- $serviceName = printf "%v-%v" $serviceName $values.nameSuffix -}}
 {{ end -}}
 {{- $svcType := $values.type | default "" -}}
-<<<<<<< HEAD
-=======
 
 {{- $portProtocol := $values.port.protocol -}}
 {{- if or ( eq $values.port.protocol "HTTP" ) ( eq $values.port.protocol "HTTPS" ) ( eq $values.port.protocol "TCP" ) -}}
@@ -52,7 +42,6 @@ within the common library.
 {{- else if eq $values.port.protocol "UDP" }}
 {{- $portProtocol = "UDP" -}}
 {{- end }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 apiVersion: v1
 kind: Service
 metadata:
@@ -62,16 +51,11 @@ metadata:
   {{- if $values.labels }}
     {{ toYaml $values.labels | nindent 4 }}
   {{- end }}
-<<<<<<< HEAD
-  {{- with $values.annotations }}
-  annotations:
-=======
   annotations:
   {{- if eq $values.port.protocol "HTTPS" }}
     traefik.ingress.kubernetes.io/service.serversscheme: https
   {{- end }}
   {{- with $values.annotations }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
     {{ toYaml . | nindent 4 }}
   {{- end }}
 spec:

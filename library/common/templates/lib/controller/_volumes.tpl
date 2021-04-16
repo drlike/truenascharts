@@ -35,13 +35,9 @@ Volumes included by the controller.
   {{- else -}}
   {{- /* Otherwise refer to the PVC name */}}
   persistentVolumeClaim:
-<<<<<<< HEAD
-    {{- if $persistence.nameSuffix }}
-=======
     {{- if $persistence.nameOverride }}
     claimName: {{ $persistence.nameOverride }}
     {{- else if $persistence.nameSuffix }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
     claimName: {{ printf "%s-%s" (include "common.names.fullname" $) $persistence.nameSuffix }}
     {{- else }}
     claimName: {{ printf "%s-%s" (include "common.names.fullname" $) $index }}
@@ -50,7 +46,38 @@ Volumes included by the controller.
 {{- end }}
 {{- end }}
 {{- end }}
-{{ include "common.storage.allAppVolumes" . | nindent 0 }}
+
+{{- range $name, $dm := .Values.deviceMounts -}}
+{{ if $dm.enabled }}
+{{ if $dm.name }}
+{{ $name = $dm.name }}
+{{ end }}
+- name: devicemount-{{ $name }}
+  {{ if $dm.emptyDir }}
+  emptyDir: {}
+  {{- else -}}
+  hostPath:
+    path: {{ required "hostPath not set" $dm.devicePath }}
+  {{ end }}
+{{ end }}
+{{- end -}}
+
+{{- range $name, $cs := .Values.customStorage -}}
+{{ if $cs.enabled }}
+{{ if $cs.name }}
+{{ $name = $cs.name }}
+{{ end }}
+- name: customstorage-{{ $name }}
+  {{ if $cs.emptyDir }}
+  emptyDir: {}
+  {{- else -}}
+  hostPath:
+    path: {{ required "hostPath not set" $cs.hostPath }}
+  {{ end }}
+{{ end }}
+{{- end -}}
+
+
 {{- if .Values.additionalVolumes }}
   {{- toYaml .Values.additionalVolumes | nindent 0 }}
 {{- end }}

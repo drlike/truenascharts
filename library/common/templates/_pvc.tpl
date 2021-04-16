@@ -33,22 +33,4 @@ of all the entries of the persistence key.
       {{- include "common.classes.pvc" $ -}}
     {{- end }}
   {{- end }}
-<<<<<<< HEAD
-=======
-
-  {{/*
-  This is kept seperate, to enable us ot add "persistence" to questions.yaml and keep this out of it
-  */}}
-  {{- range $index, $PVC := .Values.backupPersistence }}
-    {{- if and $PVC.enabled (not (or $PVC.emptyDir $PVC.existingClaim)) -}}
-      {{- $persistenceValues := $PVC -}}
-      {{- if not $persistenceValues.nameSuffix -}}
-        {{- $_ := set $persistenceValues "nameSuffix" "buildinBackup" -}}
-      {{- end -}}
-      {{- $_ := set $ "ObjectValues" (dict "persistence" $persistenceValues) -}}
-      {{- print ("---") | nindent 0 -}}
-      {{- include "common.classes.pvc" $ -}}
-    {{- end }}
-  {{- end }}
->>>>>>> df05cf8ce687f8235ce0cb1d2ea042a31047123a
 {{- end }}
