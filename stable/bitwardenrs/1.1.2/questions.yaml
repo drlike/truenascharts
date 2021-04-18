@@ -37,7 +37,7 @@ questions:
           label: "Enable"
           description: "enable the portal button"
           schema:
-            hidden: true
+            hidden: false
             editable: false
             type: boolean
             default: true
