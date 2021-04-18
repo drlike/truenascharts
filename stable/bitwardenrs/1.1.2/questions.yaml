@@ -31,7 +31,7 @@ questions:
     label: "Configure Portal Button"
     schema:
       type: dict
-      hidden: true
+      hidden: false
       attrs:
         - variable: enabled
           label: "Enable"
@@ -41,14 +41,14 @@ questions:
             editable: false
             type: boolean
             default: true
-  # - variable: ingressPort
-  #   label: "Port when ingress is not using 443"
-  #   description: "Advanced setting, please enter a different port to use if Ingress uses something other than port 443"
-  #   schema:
-  #     hidden: false
-  #     editable: true
-  #     type: int
-  #     default: 449            
+        - variable: ingressPort
+          label: "Port when ingress is not using 443"
+          description: "Advanced setting, please enter a different port to use if Ingress uses something other than port 443"
+          schema:
+            hidden: false
+            editable: true
+            type: int
+            default: 449            
   # Update Policy
   - variable: strategyType
     group: "Container Image"
