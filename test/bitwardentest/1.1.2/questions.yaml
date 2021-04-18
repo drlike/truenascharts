@@ -522,176 +522,176 @@ questions:
                         hidden: true
 
 ## TrueCharts Specific
-  - variable: persistence
-    label: "Integrated Persistent Storage"
-    description: "Websocket Service"
-    group: "Storage"
-    schema:
-      type: dict
-      attrs:
-        - variable: data
-          label: "App Config Storage"
-          description: "Stores the Application Configuration."
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enable the storage"
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: storageClass
-                label: "Type of Storage"
-                description: " Warning: Anything other than Internal will break rollback!"
-                schema:
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Internal"
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  type: string
-                  default: "/data"
-                  hidden: true
-              - variable: emptyDir
-                label: "Mount a ramdisk instead of actual storage"
-                schema:
-                  type: boolean
-                  default: false
-                  hidden: true
-              - variable: accessMode
-                label: "Access Mode (Advanced)"
-                description: "Allow or disallow multiple PVC's writhing to the same PVC"
-                schema:
-                  type: string
-                  default: "ReadWriteOnce"
-                  enum:
-                    - value: "ReadWriteOnce"
-                      description: "ReadWriteOnce"
-                    - value: "ReadOnlyMany"
-                      description: "ReadOnlyMany"
-                    - value: "ReadWriteMany"
-                      description: "ReadWriteMany"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  type: string
-                  default: "100Gi"
-        - variable: db
-          label: "Database Storage"
-          description: "Stores the Application database."
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enable the storage"
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: nameOverride
-                label: "Override PVC Name (advanced)"
-                description: "Forces a certain name for the PVC"
-                schema:
-                  type: string
-                  default: "db"
-                  hidden: true
-              - variable: storageClass
-                label: "Type of Storage"
-                description: " Warning: Anything other than Internal will break rollback!"
-                schema:
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Internal"
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  type: string
-                  default: ""
-                  hidden: true
-              - variable: emptyDir
-                label: "Mount a ramdisk instead of actual storage"
-                schema:
-                  type: boolean
-                  default: false
-                  hidden: true
-              - variable: accessMode
-                label: "Access Mode (Advanced)"
-                description: "Allow or disallow multiple PVC's writhing to the same PVC"
-                schema:
-                  type: string
-                  default: "ReadWriteOnce"
-                  enum:
-                    - value: "ReadWriteOnce"
-                      description: "ReadWriteOnce"
-                    - value: "ReadOnlyMany"
-                      description: "ReadOnlyMany"
-                    - value: "ReadWriteMany"
-                      description: "ReadWriteMany"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  type: string
-                  default: "100Gi"
-        - variable: dbbackup
-          label: "Database Backup Storage"
-          description: "Stores the Application database backups."
-          schema:
-            type: dict
-            attrs:
-              - variable: enabled
-                label: "Enable the storage"
-                schema:
-                  type: boolean
-                  default: true
-                  hidden: true
-              - variable: storageClass
-                label: "Type of Storage"
-                description: " Warning: Anything other than Internal will break rollback!"
-                schema:
-                  type: string
-                  default: ""
-                  enum:
-                    - value: ""
-                      description: "Internal"
-              - variable: mountPath
-                label: "mountPath"
-                description: "Path inside the container the storage is mounted"
-                schema:
-                  type: string
-                  default: ""
-                  hidden: true
-              - variable: emptyDir
-                label: "Mount a ramdisk instead of actual storage"
-                schema:
-                  type: boolean
-                  default: false
-                  hidden: true
-              - variable: accessMode
-                label: "Access Mode (Advanced)"
-                description: "Allow or disallow multiple PVC's writhing to the same PVC"
-                schema:
-                  type: string
-                  default: "ReadWriteOnce"
-                  enum:
-                    - value: "ReadWriteOnce"
-                      description: "ReadWriteOnce"
-                    - value: "ReadOnlyMany"
-                      description: "ReadOnlyMany"
-                    - value: "ReadWriteMany"
-                      description: "ReadWriteMany"
-              - variable: size
-                label: "Size quotum of storage"
-                schema:
-                  type: string
-                  default: "100Gi"
+  # - variable: persistence
+  #   label: "Integrated Persistent Storage"
+  #   description: "Websocket Service"
+  #   group: "Storage"
+  #   schema:
+  #     type: dict
+  #     attrs:
+  #       - variable: data
+  #         label: "App Config Storage"
+  #         description: "Stores the Application Configuration."
+  #         schema:
+  #           type: dict
+  #           attrs:
+  #             - variable: enabled
+  #               label: "Enable the storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: true
+  #                 hidden: true
+  #             - variable: storageClass
+  #               label: "Type of Storage"
+  #               description: " Warning: Anything other than Internal will break rollback!"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 enum:
+  #                   - value: ""
+  #                     description: "Internal"
+  #             - variable: mountPath
+  #               label: "mountPath"
+  #               description: "Path inside the container the storage is mounted"
+  #               schema:
+  #                 type: string
+  #                 default: "/data"
+  #                 hidden: true
+  #             - variable: emptyDir
+  #               label: "Mount a ramdisk instead of actual storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: false
+  #                 hidden: true
+  #             - variable: accessMode
+  #               label: "Access Mode (Advanced)"
+  #               description: "Allow or disallow multiple PVC's writhing to the same PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "ReadWriteOnce"
+  #                 enum:
+  #                   - value: "ReadWriteOnce"
+  #                     description: "ReadWriteOnce"
+  #                   - value: "ReadOnlyMany"
+  #                     description: "ReadOnlyMany"
+  #                   - value: "ReadWriteMany"
+  #                     description: "ReadWriteMany"
+  #             - variable: size
+  #               label: "Size quotum of storage"
+  #               schema:
+  #                 type: string
+  #                 default: "100Gi"
+  #       - variable: db
+  #         label: "Database Storage"
+  #         description: "Stores the Application database."
+  #         schema:
+  #           type: dict
+  #           attrs:
+  #             - variable: enabled
+  #               label: "Enable the storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: true
+  #                 hidden: true
+  #             - variable: nameOverride
+  #               label: "Override PVC Name (advanced)"
+  #               description: "Forces a certain name for the PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "db"
+  #                 hidden: true
+  #             - variable: storageClass
+  #               label: "Type of Storage"
+  #               description: " Warning: Anything other than Internal will break rollback!"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 enum:
+  #                   - value: ""
+  #                     description: "Internal"
+  #             - variable: mountPath
+  #               label: "mountPath"
+  #               description: "Path inside the container the storage is mounted"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 hidden: true
+  #             - variable: emptyDir
+  #               label: "Mount a ramdisk instead of actual storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: false
+  #                 hidden: true
+  #             - variable: accessMode
+  #               label: "Access Mode (Advanced)"
+  #               description: "Allow or disallow multiple PVC's writhing to the same PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "ReadWriteOnce"
+  #                 enum:
+  #                   - value: "ReadWriteOnce"
+  #                     description: "ReadWriteOnce"
+  #                   - value: "ReadOnlyMany"
+  #                     description: "ReadOnlyMany"
+  #                   - value: "ReadWriteMany"
+  #                     description: "ReadWriteMany"
+  #             - variable: size
+  #               label: "Size quotum of storage"
+  #               schema:
+  #                 type: string
+  #                 default: "100Gi"
+  #       - variable: dbbackup
+  #         label: "Database Backup Storage"
+  #         description: "Stores the Application database backups."
+  #         schema:
+  #           type: dict
+  #           attrs:
+  #             - variable: enabled
+  #               label: "Enable the storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: true
+  #                 hidden: true
+  #             - variable: storageClass
+  #               label: "Type of Storage"
+  #               description: " Warning: Anything other than Internal will break rollback!"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 enum:
+  #                   - value: ""
+  #                     description: "Internal"
+  #             - variable: mountPath
+  #               label: "mountPath"
+  #               description: "Path inside the container the storage is mounted"
+  #               schema:
+  #                 type: string
+  #                 default: ""
+  #                 hidden: true
+  #             - variable: emptyDir
+  #               label: "Mount a ramdisk instead of actual storage"
+  #               schema:
+  #                 type: boolean
+  #                 default: false
+  #                 hidden: true
+  #             - variable: accessMode
+  #               label: "Access Mode (Advanced)"
+  #               description: "Allow or disallow multiple PVC's writhing to the same PVC"
+  #               schema:
+  #                 type: string
+  #                 default: "ReadWriteOnce"
+  #                 enum:
+  #                   - value: "ReadWriteOnce"
+  #                     description: "ReadWriteOnce"
+  #                   - value: "ReadOnlyMany"
+  #                     description: "ReadOnlyMany"
+  #                   - value: "ReadWriteMany"
+  #                     description: "ReadWriteMany"
+  #             - variable: size
+  #               label: "Size quotum of storage"
+  #               schema:
+  #                 type: string
+  #                 default: "100Gi"
   - variable: customStorage
     label: "Custom app storage"
     group: "Storage"
