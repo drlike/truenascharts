@@ -25,7 +25,7 @@ dependencies:
     version: 3.5.2
     # condition:
   # - name: postgresql
-  #   version: 10.3.15
+  #   version: 10.3.17
   #   repository: https://charts.bitnami.com/bitnami
   #   condition: postgresql.enabled
 maintainers:
