@@ -1,0 +1,41 @@
+
+apiVersion: v2
+kubeVersion: ">=1.16.0-0"                 
+name: mariadb
+version: 0.0.1
+upstream_version: 2.1.5
+appVersion: "auto"
+description: The open source relational database
+
+type: application
+deprecated: false                 
+home: "https://github.com/nicholaswilde/helm-charts/tree/main/charts/mariadb"
+icon: "https://github.com/linuxserver/docker-templates/raw/master/linuxserver.io/img/mariadb-icon.png"
+
+
+
+
+
+keywords:
+  - db
+  - database
+  - mariadb
+  
+sources:
+  - https://mariadb.org/
+  - https://github.com/linuxserver/docker-mariadb
+  
+dependencies:
+  - name: common
+    repository: https://truecharts.org/
+    version: 3.5.5
+    
+maintainers:
+  - name: nicholaswilde
+    email: ncwilde43@gmail.com
+#annotations:
+#  artifacthub.io/changes: |
+#    - Changed image to bionic
+#  artifacthub.io/images: |
+#    - name: mariadb
+#      image: ghcr.io/linuxserver/mariadb:110.4.18mariabionic-ls19

@@ -26,6 +26,8 @@ within the common library.
   {{- $portProtocol = $.Values.services.main.port.protocol  | default "" }}
 {{ end -}}
 
+{{- $authForwardName := ( printf "%v-%v" $ingressName "auth-forward" ) -}}
+
 {{- $svcName := $values.serviceName | default $ingressName -}}
 
 {{- if $values.servicePort }}
@@ -81,7 +83,7 @@ spec:
     middlewares:
       - name: traefik-middlewares-chain-public@kubernetescrd
       {{- if $values.authForwardURL }}
-      - name: "{{ $ingressName }}-auth-forward"
+      - name: "{{ printf "%v-%v@%v" .Release.Namespace $authForwardName "kubernetescrd" }}"
       {{- end }}
   {{- end }}
 
@@ -102,4 +104,24 @@ spec:
 {{- end }}
 {{- end }}
 
+{{- if $values.authForwardURL }}
+---
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ $authForwardName }}
+spec:
+  forwardAuth:
+    address: {{ $values.authForwardURL | quote }}
+    tls:
+      insecureSkipVerify: true
+    trustForwardHeader: true
+    authResponseHeaders:
+      - Remote-User
+      - Remote-Groups
+      - Remote-Name
+      - Remote-Email
+
+{{- end }}
 {{- end }}
